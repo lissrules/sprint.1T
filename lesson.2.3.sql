@@ -1,42 +1,42 @@
- --Уникальный номер сотрудника, его ФИО и стаж работы – для всех сотрудников компании
+ --РЈРЅРёРєР°Р»СЊРЅС‹Р№ РЅРѕРјРµСЂ СЃРѕС‚СЂСѓРґРЅРёРєР°, РµРіРѕ Р¤РРћ Рё СЃС‚Р°Р¶ СЂР°Р±РѕС‚С‹ вЂ“ РґР»СЏ РІСЃРµС… СЃРѕС‚СЂСѓРґРЅРёРєРѕРІ РєРѕРјРїР°РЅРёРё
  SELECT "tblSotr"."PersonID",
     "tblSotr"."sFIO",
     ((EXTRACT(epoch FROM age(now(), "tblSotr"."dtNaznach")) / 86400)/365)::integer as Stage
    FROM "tblSotr";
    
- --Уникальный номер сотрудника, его ФИО и стаж работы – только первых 3-х сотрудников
+ --РЈРЅРёРєР°Р»СЊРЅС‹Р№ РЅРѕРјРµСЂ СЃРѕС‚СЂСѓРґРЅРёРєР°, РµРіРѕ Р¤РРћ Рё СЃС‚Р°Р¶ СЂР°Р±РѕС‚С‹ вЂ“ С‚РѕР»СЊРєРѕ РїРµСЂРІС‹С… 3-С… СЃРѕС‚СЂСѓРґРЅРёРєРѕРІ
   SELECT "tblSotr"."PersonID",
     "tblSotr"."sFIO",
     ((EXTRACT(epoch FROM age(now(), "tblSotr"."dtNaznach")) / 86400)/365)::integer as Stage
    FROM "tblSotr"
    fetch first 3 rows only;
    
-  --Уникальный номер сотрудников - водителей
+  --РЈРЅРёРєР°Р»СЊРЅС‹Р№ РЅРѕРјРµСЂ СЃРѕС‚СЂСѓРґРЅРёРєРѕРІ - РІРѕРґРёС‚РµР»РµР№
    SELECT "tblSotr"."PersonID"
    FROM "tblSotr"
    WHERE "tblSotr"."bAccAuto" = true;
    
-   --Выведите номера сотрудников, которые хотя бы за 1 квартал получили оценку D или E
+   --Р’С‹РІРµРґРёС‚Рµ РЅРѕРјРµСЂР° СЃРѕС‚СЂСѓРґРЅРёРєРѕРІ, РєРѕС‚РѕСЂС‹Рµ С…РѕС‚СЏ Р±С‹ Р·Р° 1 РєРІР°СЂС‚Р°Р» РїРѕР»СѓС‡РёР»Рё РѕС†РµРЅРєСѓ D РёР»Рё E
    SELECT distinct "tblBonusList"."PersonID"
    FROM "tblBonusList"
    WHERE "tblBonusList"."Ball" in ('D', 'E');
    
-   --Выведите самую высокую зарплату в компании.
+   --Р’С‹РІРµРґРёС‚Рµ СЃР°РјСѓСЋ РІС‹СЃРѕРєСѓСЋ Р·Р°СЂРїР»Р°С‚Сѓ РІ РєРѕРјРїР°РЅРёРё.
    SELECT Max("tblSotr"."iLevelBonus")
    FROM "tblSotr";
   	
-	--Выведите название самого крупного отдела
+	--Р’С‹РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ СЃР°РјРѕРіРѕ РєСЂСѓРїРЅРѕРіРѕ РѕС‚РґРµР»Р°
 	SELECT "tblDepart"."NameDepart"
 	FROM "tblDepart"
 	WHERE "tblDepart"."NumberOfPerson" = (SELECT MAX("tblDepart"."NumberOfPerson") FROM "tblDepart");
 	
-	--Выведите номера сотрудников от самых опытных до вновь прибывших
+	--Р’С‹РІРµРґРёС‚Рµ РЅРѕРјРµСЂР° СЃРѕС‚СЂСѓРґРЅРёРєРѕРІ РѕС‚ СЃР°РјС‹С… РѕРїС‹С‚РЅС‹С… РґРѕ РІРЅРѕРІСЊ РїСЂРёР±С‹РІС€РёС…
 	 SELECT "tblSotr"."PersonID",
     ((EXTRACT(epoch FROM age(now(), "tblSotr"."dtNaznach")) / 86400)/365)::integer as Stage
    	FROM "tblSotr"
 	order by Stage desc;
 	
-	-- Рассчитайте среднюю зарплату для каждого уровня сотрудников
+	-- Р Р°СЃСЃС‡РёС‚Р°Р№С‚Рµ СЃСЂРµРґРЅСЋСЋ Р·Р°СЂРїР»Р°С‚Сѓ РґР»СЏ РєР°Р¶РґРѕРіРѕ СѓСЂРѕРІРЅСЏ СЃРѕС‚СЂСѓРґРЅРёРєРѕРІ
 	SELECT "tblGrade"."Status", AVG("tblSotr"."iLevelBonus")::integer
    	FROM "tblSotr","tblGrade"
 	Where "tblGrade"."GradeID"="tblSotr"."GradeID"
