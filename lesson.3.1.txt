@@ -1,0 +1,204 @@
+PS C:\Users\LissRUles\docker\hadoop> docker cp .\voyna-i-mir-tom-1.txt namenode:/
+PS C:\Users\LissRUles\docker\hadoop> docker cp voyna-i-mir-tom-1.txt namenode:/
+PS C:\Users\LissRUles\docker\hadoop> docker cp .\voyna-i-mir-tom-2.txt namenode:/
+PS C:\Users\LissRUles\docker\hadoop> docker cp .\voyna-i-mir-tom-3.txt namenode:/
+PS C:\Users\LissRUles\docker\hadoop> docker cp .\voyna-i-mir-tom-4.txt namenode:/
+PS C:\Users\LissRUles\docker\hadoop> docker exec -it namenode /bin/bash
+root@56dd0d1e08e0:/# ls -la
+total 3080
+drwxr-xr-x   1 root root   4096 Nov 12 04:00 .
+drwxr-xr-x   1 root root   4096 Nov 12 04:00 ..
+-rwxr-xr-x   1 root root      0 Nov 12 03:41 .dockerenv
+drwxr-xr-x   1 root root   4096 Apr 10  2017 bin
+drwxr-xr-x   2 root root   4096 Dec 28  2016 boot
+drwxr-xr-x   5 root root    340 Nov 12 03:41 dev
+-rwxr-xr-x   1 root root   3245 Apr 10  2017 entrypoint.sh
+drwxr-xr-x   1 root root   4096 Nov 12 03:41 etc
+drwxr-xr-x   3 root root   4096 Apr 10  2017 hadoop
+drwxr-xr-x   2 root root   4096 Apr 10  2017 hadoop-data
+drwxr-xr-x   2 root root   4096 Dec 28  2016 home
+drwxr-xr-x   1 root root   4096 Mar 21  2017 lib
+drwxr-xr-x   2 root root   4096 Mar 20  2017 lib64
+drwxr-xr-x   2 root root   4096 Mar 20  2017 media
+drwxr-xr-x   2 root root   4096 Mar 20  2017 mnt
+drwxr-xr-x   1 root root   4096 Apr 10  2017 opt
+dr-xr-xr-x 224 root root      0 Nov 12 03:41 proc
+drwx------   1 root root   4096 Apr 10  2017 root
+drwxr-xr-x   3 root root   4096 Mar 20  2017 run
+-rwxr-xr-x   1 root root    499 Apr 10  2017 run.sh
+drwxr-xr-x   1 root root   4096 Apr 10  2017 sbin
+drwxr-xr-x   2 root root   4096 Mar 20  2017 srv
+dr-xr-xr-x  11 root root      0 Nov 12 03:41 sys
+drwxrwxrwt   1 root root   4096 Nov 12 03:41 tmp
+drwxr-xr-x   1 root root   4096 Apr 10  2017 usr
+drwxr-xr-x   1 root root   4096 Apr 10  2017 var
+-rwxr-xr-x   1 root root 736519 Nov 12 03:48 voyna-i-mir-tom-1.txt
+-rwxr-xr-x   1 root root 770324 Nov 12 03:48 voyna-i-mir-tom-2.txt
+-rwxr-xr-x   1 root root 843205 Nov 12 03:48 voyna-i-mir-tom-3.txt
+-rwxr-xr-x   1 root root 697960 Nov 12 03:48 voyna-i-mir-tom-4.txt
+root@56dd0d1e08e0:/# hdfs dfs -put voyna-i-mir-tom-1.txt /
+root@56dd0d1e08e0:/# hdfs dfs -put voyna-i-mir-tom-2.txt /
+root@56dd0d1e08e0:/# hdfs dfs -put voyna-i-mir-tom-3.txt /
+root@56dd0d1e08e0:/# hdfs dfs -put voyna-i-mir-tom-4.txt /
+root@56dd0d1e08e0:/# hdfs dfs -ls /
+Found 4 items
+-rw-r--r--   3 root supergroup     736519 2022-11-12 04:05 /voyna-i-mir-tom-1.txt
+-rw-r--r--   3 root supergroup     770324 2022-11-12 04:06 /voyna-i-mir-tom-2.txt
+-rw-r--r--   3 root supergroup     843205 2022-11-12 04:06 /voyna-i-mir-tom-3.txt
+-rw-r--r--   3 root supergroup     697960 2022-11-12 04:06 /voyna-i-mir-tom-4.txt
+root@56dd0d1e08e0:/# hadoop archive -archiveName voina-i-mir.arch.har -p / voyna-i-mir-tom-*.txt
+22/11/12 04:20:13 INFO Configuration.deprecation: session.id is deprecated. Instead, use dfs.metrics.session-id
+22/11/12 04:20:13 INFO jvm.JvmMetrics: Initializing JVM Metrics with processName=JobTracker, sessionId=
+22/11/12 04:20:13 INFO jvm.JvmMetrics: Cannot initialize JVM Metrics with processName=JobTracker, sessionId= - already initialized
+22/11/12 04:20:13 INFO jvm.JvmMetrics: Cannot initialize JVM Metrics with processName=JobTracker, sessionId= - already initialized
+22/11/12 04:20:13 INFO mapreduce.JobSubmitter: number of splits:1
+22/11/12 04:20:13 INFO mapreduce.JobSubmitter: Submitting tokens for job: job_local1255182761_0001
+22/11/12 04:20:14 INFO mapreduce.Job: The url to track the job: http://localhost:8080/
+22/11/12 04:20:14 INFO mapred.LocalJobRunner: OutputCommitter set in config null
+22/11/12 04:20:14 INFO mapreduce.Job: Running job: job_local1255182761_0001
+22/11/12 04:20:14 INFO mapred.LocalJobRunner: OutputCommitter is org.apache.hadoop.mapred.FileOutputCommitter
+22/11/12 04:20:14 INFO output.FileOutputCommitter: File Output Committer Algorithm version is 1
+22/11/12 04:20:14 INFO output.FileOutputCommitter: FileOutputCommitter skip cleanup _temporary folders under output directory:false, ignore cleanup failures: false
+22/11/12 04:20:14 INFO mapred.LocalJobRunner: Waiting for map tasks
+22/11/12 04:20:14 INFO mapred.LocalJobRunner: Starting task: attempt_local1255182761_0001_m_000000_0
+22/11/12 04:20:14 INFO output.FileOutputCommitter: File Output Committer Algorithm version is 1
+22/11/12 04:20:14 INFO output.FileOutputCommitter: FileOutputCommitter skip cleanup _temporary folders under output directory:false, ignore cleanup failures: false
+22/11/12 04:20:14 INFO mapred.Task:  Using ResourceCalculatorProcessTree : [ ]
+22/11/12 04:20:14 INFO mapred.MapTask: Processing split: file:/tmp/hadoop/mapred/staging/root2015193522/.staging/har_o610eg/_har_src_files:0+397
+22/11/12 04:20:14 INFO mapred.MapTask: numReduceTasks: 1
+22/11/12 04:20:15 INFO mapreduce.Job: Job job_local1255182761_0001 running in uber mode : false
+22/11/12 04:20:15 INFO mapreduce.Job:  map 0% reduce 0%
+22/11/12 04:20:17 INFO mapred.MapTask: (EQUATOR) 0 kvi 26214396(104857584)
+22/11/12 04:20:17 INFO mapred.MapTask: mapreduce.task.io.sort.mb: 100
+22/11/12 04:20:17 INFO mapred.MapTask: soft limit at 83886080
+22/11/12 04:20:17 INFO mapred.MapTask: bufstart = 0; bufvoid = 104857600
+22/11/12 04:20:17 INFO mapred.MapTask: kvstart = 26214396; length = 6553600
+22/11/12 04:20:17 INFO mapred.MapTask: Map output collector class = org.apache.hadoop.mapred.MapTask$MapOutputBuffer
+22/11/12 04:20:18 INFO mapred.LocalJobRunner:
+22/11/12 04:20:18 INFO mapred.MapTask: Starting flush of map output
+22/11/12 04:20:18 INFO mapred.MapTask: Spilling map output
+22/11/12 04:20:18 INFO mapred.MapTask: bufstart = 0; bufend = 383; bufvoid = 104857600
+22/11/12 04:20:18 INFO mapred.MapTask: kvstart = 26214396(104857584); kvend = 26214384(104857536); length = 13/6553600
+22/11/12 04:20:18 INFO mapred.MapTask: Finished spill 0
+22/11/12 04:20:18 INFO mapred.Task: Task:attempt_local1255182761_0001_m_000000_0 is done. And is in the process of committing
+22/11/12 04:20:18 INFO mapred.LocalJobRunner:
+22/11/12 04:20:18 INFO mapred.Task: Task attempt_local1255182761_0001_m_000000_0 is allowed to commit now
+22/11/12 04:20:18 INFO output.FileOutputCommitter: Saved output of task 'attempt_local1255182761_0001_m_000000_0' to hdfs://namenode:8020/user/root/voyna-i-mir-tom-4.txt/voina-i-mir.arch.har/_temporary/0/task_local1255182761_0001_m_000000
+22/11/12 04:20:18 INFO mapred.LocalJobRunner: Copying file hdfs://namenode:8020/voyna-i-mir-tom-3.txt to archive.
+22/11/12 04:20:18 INFO mapred.Task: Task 'attempt_local1255182761_0001_m_000000_0' done.
+22/11/12 04:20:18 INFO mapred.LocalJobRunner: Finishing task: attempt_local1255182761_0001_m_000000_0
+22/11/12 04:20:18 INFO mapred.LocalJobRunner: map task executor complete.
+22/11/12 04:20:18 INFO mapred.LocalJobRunner: Waiting for reduce tasks
+22/11/12 04:20:18 INFO mapred.LocalJobRunner: Starting task: attempt_local1255182761_0001_r_000000_0
+22/11/12 04:20:18 INFO output.FileOutputCommitter: File Output Committer Algorithm version is 1
+22/11/12 04:20:18 INFO output.FileOutputCommitter: FileOutputCommitter skip cleanup _temporary folders under output directory:false, ignore cleanup failures: false
+22/11/12 04:20:18 INFO mapred.Task:  Using ResourceCalculatorProcessTree : [ ]
+22/11/12 04:20:18 INFO mapred.ReduceTask: Using ShuffleConsumerPlugin: org.apache.hadoop.mapreduce.task.reduce.Shuffle@290af00a
+22/11/12 04:20:18 INFO reduce.MergeManagerImpl: MergerManager: memoryLimit=334338464, maxSingleShuffleLimit=83584616, mergeThreshold=220663392, ioSortFactor=10, memToMemMergeOutputsThreshold=10
+22/11/12 04:20:18 INFO reduce.EventFetcher: attempt_local1255182761_0001_r_000000_0 Thread started: EventFetcher for fetching Map Completion Events
+22/11/12 04:20:18 INFO reduce.LocalFetcher: localfetcher#1 about to shuffle output of map attempt_local1255182761_0001_m_000000_0 decomp: 393 len: 397 to MEMORY
+22/11/12 04:20:19 INFO reduce.InMemoryMapOutput: Read 393 bytes from map-output for attempt_local1255182761_0001_m_000000_0
+22/11/12 04:20:19 INFO reduce.MergeManagerImpl: closeInMemoryFile -> map-output of size: 393, inMemoryMapOutputs.size() -> 1, commitMemory -> 0, usedMemory ->393
+22/11/12 04:20:19 WARN io.ReadaheadPool: Failed readahead on ifile
+EBADF: Bad file descriptor
+        at org.apache.hadoop.io.nativeio.NativeIO$POSIX.posix_fadvise(Native Method)
+        at org.apache.hadoop.io.nativeio.NativeIO$POSIX.posixFadviseIfPossible(NativeIO.java:267)
+        at org.apache.hadoop.io.nativeio.NativeIO$POSIX$CacheManipulator.posixFadviseIfPossible(NativeIO.java:146)
+        at org.apache.hadoop.io.ReadaheadPool$ReadaheadRequestImpl.run(ReadaheadPool.java:208)
+        at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+        at java.lang.Thread.run(Thread.java:745)
+22/11/12 04:20:19 INFO reduce.EventFetcher: EventFetcher is interrupted.. Returning
+22/11/12 04:20:19 INFO mapred.LocalJobRunner: 1 / 1 copied.
+22/11/12 04:20:19 INFO reduce.MergeManagerImpl: finalMerge called with 1 in-memory map-outputs and 0 on-disk map-outputs
+22/11/12 04:20:19 INFO mapred.Merger: Merging 1 sorted segments
+22/11/12 04:20:19 INFO mapred.Merger: Down to the last merge-pass, with 1 segments left of total size: 387 bytes
+22/11/12 04:20:19 INFO reduce.MergeManagerImpl: Merged 1 segments, 393 bytes to disk to satisfy reduce memory limit
+22/11/12 04:20:19 INFO reduce.MergeManagerImpl: Merging 1 files, 397 bytes from disk
+22/11/12 04:20:19 INFO reduce.MergeManagerImpl: Merging 0 segments, 0 bytes from memory into reduce
+22/11/12 04:20:19 INFO mapred.Merger: Merging 1 sorted segments
+22/11/12 04:20:19 INFO mapred.Merger: Down to the last merge-pass, with 1 segments left of total size: 387 bytes
+22/11/12 04:20:19 INFO mapred.LocalJobRunner: 1 / 1 copied.
+22/11/12 04:20:19 INFO mapred.Task: Task:attempt_local1255182761_0001_r_000000_0 is done. And is in the process of committing
+22/11/12 04:20:19 INFO mapred.LocalJobRunner: 1 / 1 copied.
+22/11/12 04:20:19 INFO mapred.Task: Task attempt_local1255182761_0001_r_000000_0 is allowed to commit now
+22/11/12 04:20:19 INFO output.FileOutputCommitter: Saved output of task 'attempt_local1255182761_0001_r_000000_0' to hdfs://namenode:8020/user/root/voyna-i-mir-tom-4.txt/voina-i-mir.arch.har/_temporary/0/task_local1255182761_0001_r_000000
+22/11/12 04:20:19 INFO mapred.LocalJobRunner: reduce > reduce
+22/11/12 04:20:19 INFO mapred.Task: Task 'attempt_local1255182761_0001_r_000000_0' done.
+22/11/12 04:20:19 INFO mapred.LocalJobRunner: Finishing task: attempt_local1255182761_0001_r_000000_0
+22/11/12 04:20:19 INFO mapred.LocalJobRunner: reduce task executor complete.
+22/11/12 04:20:19 INFO mapreduce.Job:  map 100% reduce 100%
+22/11/12 04:20:19 INFO mapreduce.Job: Job job_local1255182761_0001 completed successfully
+22/11/12 04:20:19 INFO mapreduce.Job: Counters: 35
+        File System Counters
+                FILE: Number of bytes read=103114
+                FILE: Number of bytes written=758285
+                FILE: Number of read operations=0
+                FILE: Number of large read operations=0
+                FILE: Number of write operations=0
+                HDFS: Number of bytes read=4700096
+                HDFS: Number of bytes written=4700486
+                HDFS: Number of read operations=49
+                HDFS: Number of large read operations=0
+                HDFS: Number of write operations=13
+        Map-Reduce Framework
+                Map input records=4
+                Map output records=4
+                Map output bytes=383
+                Map output materialized bytes=397
+                Input split bytes=133
+                Combine input records=0
+                Combine output records=0
+                Reduce input groups=4
+                Reduce shuffle bytes=397
+                Reduce input records=4
+                Reduce output records=0
+                Spilled Records=8
+                Shuffled Maps =1
+                Failed Shuffles=0
+                Merged Map outputs=1
+                GC time elapsed (ms)=19
+                Total committed heap usage (bytes)=563609600
+        Shuffle Errors
+                BAD_ID=0
+                CONNECTION=0
+                IO_ERROR=0
+                WRONG_LENGTH=0
+                WRONG_MAP=0
+                WRONG_REDUCE=0
+        File Input Format Counters
+                Bytes Read=409
+        File Output Format Counters
+                Bytes Written=0
+root@56dd0d1e08e0:/# hdfs dfs -ls /user/root/voyna-i-mir
+Found 1 items
+drwxr-xr-x   - root supergroup          0 2022-11-12 04:20 /user/root/voyna-i-mir/voina-i-mir.arch.har
+root@56dd0d1e08e0:/# hdfs dfs -chmod 775 /user/root/voyna-i-mir/voina-i-mir.arch.har
+root@56dd0d1e08e0:/# hdfs dfs -ls /user/root/voyna-i-mir
+Found 1 items
+drwxrwxr-x   - root supergroup          0 2022-11-12 04:20 /user/root/voyna-i-mir/voina-i-mir.arch.har
+root@56dd0d1e08e0:/# hdfs dfs -ls -S -h /
+Found 5 items
+-rw-r--r--   3 root supergroup    823.4 K 2022-11-12 04:06 /voyna-i-mir-tom-3.txt
+-rw-r--r--   3 root supergroup    752.3 K 2022-11-12 04:06 /voyna-i-mir-tom-2.txt
+-rw-r--r--   3 root supergroup    719.3 K 2022-11-12 04:05 /voyna-i-mir-tom-1.txt
+-rw-r--r--   3 root supergroup    681.6 K 2022-11-12 04:06 /voyna-i-mir-tom-4.txt
+drwxr-xr-x   - root supergroup          0 2022-11-12 04:20 /user
+root@56dd0d1e08e0:/# hdfs dfs -ls -S -h /
+Found 5 items
+-rw-r--r--   3 root supergroup    823.4 K 2022-11-12 04:06 /voyna-i-mir-tom-3.txt
+-rw-r--r--   3 root supergroup    752.3 K 2022-11-12 04:06 /voyna-i-mir-tom-2.txt
+-rw-r--r--   2 root supergroup    719.3 K 2022-11-12 04:05 /voyna-i-mir-tom-1.txt
+-rw-r--r--   3 root supergroup    681.6 K 2022-11-12 04:06 /voyna-i-mir-tom-4.txt
+drwxr-xr-x   - root supergroup          0 2022-11-12 04:20 /user
+root@56dd0d1e08e0:/# hdfs dfs -setrep 1 /voyna-i-mir-tom-4.txt
+Replication 1 set: /voyna-i-mir-tom-4.txt
+root@56dd0d1e08e0:/# hdfs dfs -ls -S -h /
+Found 5 items
+-rw-r--r--   3 root supergroup    823.4 K 2022-11-12 04:06 /voyna-i-mir-tom-3.txt
+-rw-r--r--   3 root supergroup    752.3 K 2022-11-12 04:06 /voyna-i-mir-tom-2.txt
+-rw-r--r--   2 root supergroup    719.3 K 2022-11-12 04:05 /voyna-i-mir-tom-1.txt
+-rw-r--r--   1 root supergroup    681.6 K 2022-11-12 04:06 /voyna-i-mir-tom-4.txt
+drwxr-xr-x   - root supergroup          0 2022-11-12 04:20 /user
+root@56dd0d1e08e0:/# hdfs dfs -cat /*.txt | wc -l
+10272
